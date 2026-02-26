@@ -2,6 +2,7 @@ package com.alilopez.demo.features.jsonplaceholder.domain.usescases
 
 import com.alilopez.demo.features.jsonplaceholder.domain.entities.Posts
 import com.alilopez.demo.features.jsonplaceholder.domain.repositories.PostsRepository
+import com.alilopez.kt_demohilt.core.di.RickAndMortyRetrofit
 import javax.inject.Inject
 
 class GetPostsUseCase @Inject constructor(

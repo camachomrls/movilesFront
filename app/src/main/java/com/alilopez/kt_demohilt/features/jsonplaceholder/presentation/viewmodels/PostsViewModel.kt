@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.alilopez.demo.features.jsonplaceholder.domain.entities.Posts
 import com.alilopez.demo.features.jsonplaceholder.domain.usescases.GetPostsUseCase
 import com.alilopez.demo.features.jsonplaceholder.presentation.screens.PostsUIState
+import com.alilopez.kt_demohilt.core.hardware.domain.FlashManager
 import dagger.hilt.android.lifecycle.HiltViewModel
 import jakarta.inject.Inject
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -14,7 +15,8 @@ import kotlinx.coroutines.launch
 
 @HiltViewModel
 class PostsViewModel @Inject constructor(
-    private val getPostsUseCase: GetPostsUseCase
+    private val getPostsUseCase: GetPostsUseCase,
+    private val flashManager: FlashManager
 ) : ViewModel() {
     private val _uiState = MutableStateFlow(PostsUIState())
     val uiState = _uiState.asStateFlow()
@@ -28,16 +30,24 @@ class PostsViewModel @Inject constructor(
 
         viewModelScope.launch {
             val result = getPostsUseCase()
-            _uiState.update { currentState ->
-                result.fold(
-                    onSuccess = { list ->
-                        currentState.copy(isLoading = false, posts = list)
-                    },
-                    onFailure = { error ->
-                        currentState.copy(isLoading = false, error = error.message)
+
+            result.fold(
+                onSuccess = { list ->
+                    _uiState.update { it.copy(isLoading = false, posts = list) }
+
+                    if (flashManager.hasFlash()) {
+                        flashManager.blink(100)
                     }
-                )
-            }
+                },
+                onFailure = { error ->
+                    _uiState.update { it.copy(isLoading = false, error = error.message) }
+                }
+            )
         }
+    }
+
+    // Encendido manual
+    fun onFlashManual(enable: Boolean) {
+        if (enable) flashManager.turnOn() else flashManager.turnOff()
     }
 }
