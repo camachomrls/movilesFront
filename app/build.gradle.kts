@@ -96,10 +96,10 @@ dependencies {
     implementation(libs.io.coil.kt.coil.compose)                    // Coil
     implementation(libs.androidx.navigation.compose)                // Navigation
     implementation(libs.androidx.compose.material.icons.extended)   // Icons extendend
-    implementation(libs.hilt.android)                               // Implementación de Hilt
+    // Hilt
+    implementation(libs.hilt.android)
     implementation(libs.hilt.navigation.compose)                    // Integración con Jetpack Compose
-    ksp(libs.hilt.compiler)                                         // KSP
-
+    ksp(libs.hilt.compiler)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
