@@ -217,9 +217,9 @@ val surfaceContainerDarkHighContrast = Color(0xFF392E2C)
 val surfaceContainerHighDarkHighContrast = Color(0xFF443937)
 val surfaceContainerHighestDarkHighContrast = Color(0xFF504442)
 
-
-
-
-
-
-
+val HireBeatBackground = Color(0xFFF8EFE5)
+val HireBeatPrimary = Color(0xFF9B3922)
+val HireBeatDarkText = Color(0xFF4A2C21)
+val HireBeatAccentGold = Color(0xFFD99C38)
+val HireBeatAccentGreen = Color(0xFF3F6B67)
+val HireBeatMutedText = Color(0xFFA68A7E)

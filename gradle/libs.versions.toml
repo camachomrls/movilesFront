@@ -19,7 +19,8 @@ secretsGradle = "2.0.1"
 hilt = "2.59.2"
 hiltNavigationCompose = "1.3.0"     # Procesador de anotaciones (puedes usar kapt o ksp)
 ksp = "2.3.2"
-playServicesLocation = "21.3.0"               # Asegúrate de que coincida con tu versión de Kotlin
+playServicesLocation = "21.3.0"
+lifecycleViewmodelKtx = "2.10.0"               # Asegúrate de que coincida con tu versión de Kotlin
 
 
 [libraries]
@@ -50,6 +51,7 @@ hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref
 hilt-compiler = { group = "com.google.dagger", name = "hilt-compiler", version.ref = "hilt" }
 hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "hiltNavigationCompose" }
 play-services-location = { group = "com.google.android.gms", name = "play-services-location", version.ref = "playServicesLocation" }
+androidx-lifecycle-viewmodel-ktx = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "lifecycleViewmodelKtx" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

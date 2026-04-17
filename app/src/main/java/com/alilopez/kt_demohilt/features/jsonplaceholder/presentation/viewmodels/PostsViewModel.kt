@@ -6,6 +6,7 @@ import com.alilopez.demo.features.jsonplaceholder.domain.entities.Posts
 import com.alilopez.demo.features.jsonplaceholder.domain.usescases.GetPostsUseCase
 import com.alilopez.demo.features.jsonplaceholder.presentation.screens.PostsUIState
 import com.alilopez.kt_demohilt.core.hardware.domain.FlashManager
+import com.alilopez.kt_demohilt.core.hardware.domain.VibrationManager
 import dagger.hilt.android.lifecycle.HiltViewModel
 import jakarta.inject.Inject
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -16,7 +17,8 @@ import kotlinx.coroutines.launch
 @HiltViewModel
 class PostsViewModel @Inject constructor(
     private val getPostsUseCase: GetPostsUseCase,
-    private val flashManager: FlashManager
+    private val flashManager: FlashManager,
+    private val vibrationManager: VibrationManager
 ) : ViewModel() {
     private val _uiState = MutableStateFlow(PostsUIState())
     val uiState = _uiState.asStateFlow()
@@ -37,6 +39,7 @@ class PostsViewModel @Inject constructor(
 
                     if (flashManager.hasFlash()) {
                         flashManager.blink(100)
+                        vibrationManager.vibrate(100)
                     }
                 },
                 onFailure = { error ->
@@ -49,5 +52,10 @@ class PostsViewModel @Inject constructor(
     // Encendido manual
     fun onFlashManual(enable: Boolean) {
         if (enable) flashManager.turnOn() else flashManager.turnOff()
+    }
+
+    fun onPostClicked(postId: Int) {
+        // Ejecutar la vibración al dar clic
+        vibrationManager.vibrate(100)
     }
 }

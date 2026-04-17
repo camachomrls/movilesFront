@@ -99,8 +99,13 @@ dependencies {
     // Hilt
     implementation(libs.hilt.android)
     implementation(libs.hilt.navigation.compose)
-    implementation(libs.play.services.location)                    // Integración con Jetpack Compose
+    implementation(libs.play.services.location)
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)                    // Integración con Jetpack Compose
     ksp(libs.hilt.compiler)
+
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.3")
+
+    implementation("androidx.datastore:datastore-preferences:1.0.0")
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
